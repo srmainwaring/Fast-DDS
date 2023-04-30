@@ -472,8 +472,12 @@ target_include_directories(${PROJECT_NAME} PUBLIC
     ${Asio_INCLUDE_DIR}
     $<$<BOOL:${TINYXML2_INCLUDE_DIR}>:${TINYXML2_INCLUDE_DIR}>
     $<$<BOOL:${ANDROID}>:${ANDROID_IFADDRS_INCLUDE_DIR}>
-    ${THIRDPARTY_BOOST_INCLUDE_DIR}
     ${PROJECT_SOURCE_DIR}/thirdparty/taocpp-pegtl
+    )
+
+# Find thirdparty boost first 
+target_include_directories(${PROJECT_NAME} BEFORE PRIVATE
+    ${THIRDPARTY_BOOST_INCLUDE_DIR}
     )
 
 # No need to expose linked libs when target is a shared library on MSVC.
